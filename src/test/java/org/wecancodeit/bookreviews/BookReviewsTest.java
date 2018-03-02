@@ -84,34 +84,33 @@ public class BookReviewsTest {
 	}
 
 	
-//	@Test
-//	public void shouldGenerateTopicId() {
-//		Topic topic = topicRepo.save(new Topic("its name"));
-//		long topicId = topic.getId();
-//
-//		entityManager.flush(); // forces jpa to hit the db when we try to find it
-//		
-//		assertThat(topicId, is(greaterThan(0L)));
-//	}
-//	
-//	@Test
-//	public void shouldEstablishCourseToTopicsRelationships() {
-//		// topic is not the owner, so we save these first
-//		Topic java = topicRepo.save(new Topic("Java"));
-//		Topic ruby = topicRepo.save(new Topic("Ruby"));
-//		
-//		Course course = new Course("OO Languages", java, ruby);
-//		course = courseRepo.save(course);
-//		long ooLanguagesId = course.getId();
-//		
-//		entityManager.flush();
-//		entityManager.clear();
-//		
-//		course = courseRepo.findOne(ooLanguagesId);
-//		assertThat(course.getTopics(), containsInAnyOrder(java, ruby));
-//		
-//	}
-//	
+	@Test
+	public void shouldGenerateAuthorId() {
+		Author author = authorRepo.save(new Author("Tolstoy"));
+		long authorId = author.getId();
+
+		entityManager.flush(); 
+		
+		assertThat(authorId, is(greaterThan(0L)));
+	}
+	
+	@Test
+	public void shouldEstablishBookToAuthorRelationships() {
+		Author tolstoy = authorRepo.save(new Author("tolstoy"));
+		Author dante = authorRepo.save(new Author("dante"));
+		
+		Book book = new Book("One crazy book", tolstoy, dante);
+		book = bookRepo.save(book);
+		long bookId = book.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		book = bookRepo.findOne(bookId);
+		assertThat(book.getAuthors(), containsInAnyOrder(tolstoy, dante));
+		
+	}
+	
 //	@Test
 //	public void shouldEstablishTopicToCoursesRelationship() {
 //		Topic topic = topicRepo.save(new Topic("Ruby"));
