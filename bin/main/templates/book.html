@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>A book</title>
+</head>
+
+<body>
+
+	<header>
+		<h1 th:text="${books.title}"> </h1>
+	</header>
+
+	<div th:each="book: ${books}">
+		<p th:text="${book.description}" />
+		<li th:each="author:${book.authors}">
+			<a th:href="@{/author(id=${author.id})}">
+				<span th:text="${author.name}"></span>
+			</a>
+		</li>
+		<a href="http://localhost:8080/books">Back to home</a>
+	</div>
+
+</body>
+</html>

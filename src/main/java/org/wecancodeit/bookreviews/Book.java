@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Book {
 
@@ -20,6 +19,7 @@ public class Book {
 	@GeneratedValue
 	private long id;
 	private String title;
+	private String description;
 
 	@ManyToOne
 	private Genre genre;
@@ -31,6 +31,9 @@ public class Book {
 
 	public String getTitle() {
 		return title;
+	}
+	public String getDescription() {
+		return description;
 	}
 
 	public Genre getGenre() {
@@ -57,11 +60,18 @@ public class Book {
 		this.title = title;
 		this.genre = genre;
 	}
+
 	public Book(String title, Author... authors) {
 		this.title = title;
 		this.authors = new HashSet<>(asList(authors));
 	}
-
+	
+	public Book(String title, Genre genre, String description, Author...authors) {
+		this.title = title;
+		this.authors = new HashSet<>(asList(authors));
+		this.genre = genre;
+		this.description = description;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

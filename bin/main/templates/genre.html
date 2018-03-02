@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>A genre</title>
+</head>
+
+<body>
+
+	<header>
+		<h1 th:text="${genres.name}"> </h1>
+	</header>
+
+	<div th:each="genre: ${genres}">
+		<a href="http://localhost:8080/books">Back to home</a>
+	</div>
+
+</body>
+</html>

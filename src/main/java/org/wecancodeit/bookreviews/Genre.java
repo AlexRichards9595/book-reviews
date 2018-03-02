@@ -14,7 +14,7 @@ public class Genre {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String genre;
+	private String name;
 
 	@OneToMany(mappedBy = "genre")
 	private Collection<Book> books;
@@ -23,16 +23,16 @@ public class Genre {
 		return books;
 	}
 
-	public Genre(String genre) {
-		this.genre = genre;
+	public Genre(String name) {
+		this.name = name;
 	}
 
 	public Genre() {
 
 	}
 
-	public String getGenre() {
-		return genre;
+	public String getName() {
+		return name;
 	}
 
 	public long getId() {
