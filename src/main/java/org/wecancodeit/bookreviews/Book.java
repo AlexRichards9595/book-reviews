@@ -1,4 +1,4 @@
-package org.wecancodeit.libraryjpa;
+package org.wecancodeit.bookreviews;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

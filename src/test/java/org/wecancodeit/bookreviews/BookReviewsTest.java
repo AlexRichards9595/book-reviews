@@ -1,4 +1,4 @@
-package org.wecancodeit.libraryjpa;
+package org.wecancodeit.bookreviews;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
@@ -12,6 +12,12 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wecancodeit.bookreviews.Author;
+import org.wecancodeit.bookreviews.AuthorRepository;
+import org.wecancodeit.bookreviews.Book;
+import org.wecancodeit.bookreviews.BookRepository;
+import org.wecancodeit.bookreviews.Genre;
+import org.wecancodeit.bookreviews.GenreRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

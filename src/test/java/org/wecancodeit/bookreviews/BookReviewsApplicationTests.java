@@ -1,4 +1,4 @@
-package org.wecancodeit.libraryjpa;
+package org.wecancodeit.bookreviews;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

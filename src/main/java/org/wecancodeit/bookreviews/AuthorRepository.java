@@ -1,4 +1,4 @@
-package org.wecancodeit.libraryjpa;
+package org.wecancodeit.bookreviews;
 
 import org.springframework.data.repository.CrudRepository;
 

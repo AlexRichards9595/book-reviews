@@ -1,4 +1,4 @@
-package org.wecancodeit.libraryjpa;
+package org.wecancodeit.bookreviews;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ public class Author {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id; 
 	private String name;
 
 	public long getId() {
