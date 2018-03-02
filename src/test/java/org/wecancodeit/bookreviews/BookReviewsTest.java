@@ -111,21 +111,21 @@ public class BookReviewsTest {
 		
 	}
 	
-//	@Test
-//	public void shouldEstablishTopicToCoursesRelationship() {
-//		Topic topic = topicRepo.save(new Topic("Ruby"));
-//		long topicId = topic.getId();
-//
-//		Course ooLanguages = new Course("OO Languages", topic);
-//		ooLanguages = courseRepo.save(ooLanguages);
-//		
-//		Course scriptingLanguages = new Course("Scripting Languages", topic);
-//		scriptingLanguages = courseRepo.save(scriptingLanguages);
-//		
-//		entityManager.flush();
-//		entityManager.clear();
-//	
-//		topic = topicRepo.findOne(topicId);
-//		assertThat(topic.getCourses(), containsInAnyOrder(ooLanguages, scriptingLanguages));
-//	}
+	@Test
+	public void shouldEstablishAuthorToBooksRelationship() {
+		Author author = authorRepo.save(new Author("Tolstoy"));
+		long authorId = author.getId();
+
+		Book warAndPeace = new Book("War and Peace", author);
+		warAndPeace = bookRepo.save(warAndPeace);
+		
+		Book annaKarinina = new Book("Anna Karinina", author);
+		annaKarinina = bookRepo.save(annaKarinina);
+		
+		entityManager.flush();
+		entityManager.clear();
+	
+		author = authorRepo.findOne(authorId);
+		assertThat(author.getBooks(), containsInAnyOrder(warAndPeace, annaKarinina));
+	}
 }
