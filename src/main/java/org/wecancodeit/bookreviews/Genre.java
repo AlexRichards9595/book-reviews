@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Genre {
 
@@ -15,6 +14,11 @@ public class Genre {
 	@GeneratedValue
 	private long id;
 	private String name;
+	private String imageUrl;
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
 
 	@OneToMany(mappedBy = "genre")
 	private Collection<Book> books;
@@ -23,8 +27,9 @@ public class Genre {
 		return books;
 	}
 
-	public Genre(String name) {
+	public Genre(String name, String imageUrl) {
 		this.name = name;
+		this.imageUrl = imageUrl;
 	}
 
 	public Genre() {

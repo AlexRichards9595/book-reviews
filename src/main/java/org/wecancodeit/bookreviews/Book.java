@@ -20,6 +20,7 @@ public class Book {
 	private long id;
 	private String title;
 	private String description;
+	private String imageUrl;
 
 	@ManyToOne
 	private Genre genre;
@@ -32,8 +33,13 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
+
 	public String getDescription() {
 		return description;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
 	public Genre getGenre() {
@@ -65,12 +71,13 @@ public class Book {
 		this.title = title;
 		this.authors = new HashSet<>(asList(authors));
 	}
-	
-	public Book(String title, Genre genre, String description, Author...authors) {
+
+	public Book(String title, Genre genre, String imageUrl, String description, Author... authors) {
 		this.title = title;
 		this.authors = new HashSet<>(asList(authors));
 		this.genre = genre;
 		this.description = description;
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

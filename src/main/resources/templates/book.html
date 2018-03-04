@@ -3,24 +3,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>A book</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+	<title th:text="${books.title}"/>
+
+	<link rel="stylesheet" href="./layout.css"></link>
+	<link rel="stylesheet" href="./style.css"></link>
 </head>
 
 <body>
-
+	<div class = "container">
 	<header>
-		<h1 th:text="${books.title}"> </h1>
+		<nav>
+			<ul>
+				<li><a href="http://localhost:8080/books">Books</a></li>
+				<li><a href="http://localhost:8080/authors">Authors</a></li>
+				<li><a href="http://localhost:8080/genres">Genres</a></li>
+			</ul>
+		</nav>	
 	</header>
-
-	<div th:each="book: ${books}">
-		<p th:text="${book.description}" />
-		<li th:each="author:${book.authors}">
-			<a th:href="@{/author(id=${author.id})}">
-				<span th:text="${author.name}"></span>
-			</a>
-		</li>
-		<a href="http://localhost:8080/books">Back to home</a>
+	<main>
+		<section id="book-container">
+			<h2 id="book-page-title" th:text="${books.title}" />
+			<section id="book-page">
+				<article id="book-info">
+					<h3>Author:</h3>
+					<p  th:each="author:${books.authors}" th:text="${author.name}" />
+					<h3>Genre:</h3>
+					<p th:text="${books.genre.name}" />
+					<h3>Description</h3>
+					<p th:text="${books.description}" />
+				</article>
+				<img id="book-page-image" alt="Book Image" th:src="${books.imageUrl}" />
+			</section>
+			<!-- <section class="cards">
+				<article class="card">
+               		<img class="card-img-top" alt="Thumbnail [100%x225]" th:src="${books.imageUrl}" />
+                	<div class="card-body">
+                		<h3 th:text="${books.title}" />
+                  		<p class="card-text" th:text="${books.description}" />
+                  		<div class="card-bottom">
+                      		<a th:href="@{/genre(id=${books.genre.id})}"><button type="button" class="btn" th:text="${books.genre.name}" /></a>
+                      		<a th:href="@{/author(id=${books.authors.id})}"><button type="button" class="btn" th:text="${books.author.name}" /></a>
+                  		</div>
+               		</div>
+               	</article>
+            </section> -->
+        </section>       		
+	</main>
+	<footer>
+		<nav>
+			<ul>
+				<li><a href="http://localhost:8080/books">Books</a></li>
+				<li><a href="http://localhost:8080/authors">Authors</a></li>
+				<li><a href="http://localhost:8080/genres">Genres</a></li>
+			</ul>
+		</nav>	
+	</footer>
 	</div>
-
 </body>
 </html>

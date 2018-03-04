@@ -3,18 +3,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Genres</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+	<title>Genres</title>
+
+	<link rel="stylesheet" href="./layout.css"></link>
+	<link rel="stylesheet" href="./style.css"></link>
 </head>
 
 <body>
+	<div class = "container">
 	<header>
-		<h1>Genres</h1>
-	</header>	
-<ul th:each="genre: ${genres}">
-		<li>
-			<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}" />
-		</li>
-	</ul>
-
+		<nav>
+			<ul>
+				<li><a href="http://localhost:8080/books">Books</a></li>
+				<li><a href="http://localhost:8080/authors">Authors</a></li>
+				<li><a href="http://localhost:8080/genres">Genres</a></li>
+			</ul>
+		</nav>	
+	</header>
+	<main>
+		<section id="main-container">
+				<h2 id="page-title">Genres</h2>
+				<section class="cards">
+					<article class="card"  th:each="genre: ${genres}">
+               			 <img class="card-img-top" alt="Thumbnail [100%x225]" th:src="${genre.imageUrl}" />
+                		<div class="card-body">
+                			<h3 th:text="${genre.name}" />
+                  			<div class="card-bottom">
+                      			<a th:href="@{/genre(id=${genre.id})}"><button type="button" class="btn">View</button></a>
+                  			</div>
+               			</div>
+               		</article>
+               	</section>
+            </section>
+               		
+	</main>
+	<footer>
+		<nav>
+			<ul>
+				<li><a href="http://localhost:8080/books">Books</a></li>
+				<li><a href="http://localhost:8080/authors">Authors</a></li>
+				<li><a href="http://localhost:8080/genres">Genres</a></li>
+			</ul>
+		</nav>	
+	</footer>
+	</div>
 </body>
 </html>
