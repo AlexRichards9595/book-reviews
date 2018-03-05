@@ -32,24 +32,11 @@
 					<p  th:each="author:${books.authors}" th:text="${author.name}" />
 					<h3>Genre:</h3>
 					<p th:text="${books.genre.name}" />
-					<h3>Description</h3>
+					<h3>Description:</h3>
 					<p th:text="${books.description}" />
 				</article>
 				<img id="book-page-image" alt="Book Image" th:src="${books.imageUrl}" />
 			</section>
-			<!-- <section class="cards">
-				<article class="card">
-               		<img class="card-img-top" alt="Thumbnail [100%x225]" th:src="${books.imageUrl}" />
-                	<div class="card-body">
-                		<h3 th:text="${books.title}" />
-                  		<p class="card-text" th:text="${books.description}" />
-                  		<div class="card-bottom">
-                      		<a th:href="@{/genre(id=${books.genre.id})}"><button type="button" class="btn" th:text="${books.genre.name}" /></a>
-                      		<a th:href="@{/author(id=${books.authors.id})}"><button type="button" class="btn" th:text="${books.author.name}" /></a>
-                  		</div>
-               		</div>
-               	</article>
-            </section> -->
         </section>       		
 	</main>
 	<footer>

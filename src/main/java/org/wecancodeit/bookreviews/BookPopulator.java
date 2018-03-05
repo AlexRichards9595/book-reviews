@@ -36,7 +36,7 @@ public class BookPopulator implements CommandLineRunner {
 		Author dostoyevsky = new Author("Fyodor Dostoyevsky", "Also is very Russian, and sad", "./images/fyodor-dostoyevsky.jpg");
 		dostoyevsky = authorRepo.save(dostoyevsky);
 		
-		Book warAndPeace = bookRepo.save(new Book("War and Peace", fiction, "./images/war-and-peace.jpg", "Its a really long but good book", tolstoy));
+		Book warAndPeace = bookRepo.save(new Book("War and Peace", fiction, "./images/war-and-peace.jpg", "It's a really long but good book", tolstoy));
 		Book fellowship = bookRepo.save(new Book("Fellowship of the Ring", fiction, "./images/fellowship.gif", "It's alright", tolkein));
 		Book twoTowers = bookRepo.save(new Book("The Two Towers", fiction, "./images/two-towers.gif", "It's a little better", tolkein));
 		Book returnOfTheKing = bookRepo.save(new Book("The Return of the King", fiction, "./images/return-of-the-king.gif", "It's the best", tolkein));
