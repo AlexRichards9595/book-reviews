@@ -12,49 +12,54 @@ public class BookReviewsController {
 
 	@Resource
 	BookRepository bookRepo;
-	
+
 	@Resource
 	GenreRepository genreRepo;
-	
-	@Resource 
+
+	@Resource
 	AuthorRepository authorRepo;
-	
+
 	@RequestMapping(value = "/books")
 	public String getAllBooks(Model model) {
 		model.addAttribute("books", bookRepo.findAll());
 		return "books";
 	}
-	
+
 	@RequestMapping("/book")
 	public String getABook(@RequestParam Long id, Model model) {
 		model.addAttribute("books", bookRepo.findOne(id));
 		return "book";
 	}
+
 	@RequestMapping(value = "/genres")
 	public String getAllGenres(Model model) {
 		model.addAttribute("genres", genreRepo.findAll());
 		return "genres";
 	}
+
 	@RequestMapping("/genre")
 	public String getAGenre(@RequestParam Long id, Model model) {
 		model.addAttribute("genres", genreRepo.findOne(id));
 		return "genre";
 	}
+
 	@RequestMapping(value = "/authors")
 	public String getAllAuthors(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		return "authors";
 	}
+
 	@RequestMapping("/author")
 	public String getAnAuthor(@RequestParam Long id, Model model) {
 		model.addAttribute("authors", authorRepo.findOne(id));
 		return "author";
 	}
+
 	public String showBook(long bookId, Model model) {
 		return null;
 	}
 
 	public void showAllBooks(Model model) {
-		
+
 	}
 }

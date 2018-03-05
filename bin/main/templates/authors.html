@@ -3,53 +3,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8"></meta>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-	<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
-	<title>Authors</title>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+<title>Authors</title>
 
-	<link rel="stylesheet" href="./layout.css"></link>
-	<link rel="stylesheet" href="./style.css"></link>
+<link rel="stylesheet" href="./layout.css"></link>
+<link rel="stylesheet" href="./style.css"></link>
 </head>
 
 <body>
-	<div class = "container">
-	<header>
-		<nav>
-			<ul>
-				<li><a href="http://localhost:8080/books">Books</a></li>
-				<li><a href="http://localhost:8080/authors">Authors</a></li>
-				<li><a href="http://localhost:8080/genres">Genres</a></li>
-			</ul>
-		</nav>	
-	</header>
-	<main>
+	<div class="container">
+		<header>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/genres">Genres</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
 		<section id="main-container">
-				<h2 id="page-title">Authors</h2>
-				<section class="cards">
-					<article class="card"  th:each="author: ${authors}">
-               			 <img class="card-img-top" alt="Thumbnail [100%x225]" th:src="${author.imageUrl}" />
-                		<div class="card-body">
-                			<h3 th:text="${author.name}" />
-                  			<p class="card-text" th:text="${author.description}" />
-                  			<div class="card-bottom">
-                      			<a th:href="@{/author(id=${author.id})}"><button type="button" class="btn">View</button></a>
-                  			</div>
-               			</div>
-               		</article>
-               	</section>
-            </section>
-               		
-	</main>
-	<footer>
-		<nav>
-			<ul>
-				<li><a href="http://localhost:8080/books">Books</a></li>
-				<li><a href="http://localhost:8080/authors">Authors</a></li>
-				<li><a href="http://localhost:8080/genres">Genres</a></li>
-			</ul>
-		</nav>	
-	</footer>
+			<h2 id="page-title">Authors</h2>
+			<section class="cards">
+				<article class="card" th:each="author: ${authors}">
+					<img class="card-img-top" alt="Thumbnail [100%x225]"
+						th:src="${author.imageUrl}" />
+					<div class="card-body">
+						<h3 th:text="${author.name}" />
+						<p class="card-text" th:text="${author.description}" />
+						<div class="card-bottom">
+							<a th:href="@{/author(id=${author.id})}"><button
+									type="button" class="btn">View</button></a>
+						</div>
+					</div>
+				</article>
+			</section>
+		</section>
+
+		</main>
+		<footer>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/genres">Genres</a></li>
+				</ul>
+			</nav>
+		</footer>
 	</div>
 </body>
 </html>

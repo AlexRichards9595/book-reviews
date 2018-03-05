@@ -19,7 +19,6 @@ import org.wecancodeit.bookreviews.BookRepository;
 import org.wecancodeit.bookreviews.Genre;
 import org.wecancodeit.bookreviews.GenreRepository;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 public class BookReviewsTest {
@@ -34,7 +33,7 @@ public class BookReviewsTest {
 
 	@Resource
 	private AuthorRepository authorRepo;
-	
+
 	@Test
 	public void shouldSaveAndLoadBook() {
 		Book book = new Book("War and Peace");
@@ -42,8 +41,8 @@ public class BookReviewsTest {
 
 		long bookId = book.getId();
 
-		entityManager.flush(); 
-		entityManager.clear(); 
+		entityManager.flush();
+		entityManager.clear();
 
 		book = bookRepo.findOne(bookId);
 
@@ -52,21 +51,20 @@ public class BookReviewsTest {
 
 	@Test
 	public void shouldSaveAndLoadAuthor() {
-		Author author = authorRepo.save(new Author("Hemmingway"));
+		Author author = authorRepo.save(new Author("Hemmingway", "description", "imageUrl"));
 		long authorId = author.getId();
-		
-		entityManager.flush(); 
+
+		entityManager.flush();
 		entityManager.clear();
-		
+
 		author = authorRepo.findOne(authorId);
 		assertThat(author.getName(), is("Hemmingway"));
 	}
-	
 
 	@Test
 	public void shouldSaveBookToGenreRelationship() {
 
-		Genre fiction = new Genre("fiction");
+		Genre fiction = new Genre("fiction", "imageUrl");
 		genreRepo.save(fiction);
 		long genreId = fiction.getId();
 
@@ -77,54 +75,53 @@ public class BookReviewsTest {
 		bookRepo.save(inferno);
 
 		entityManager.flush();
-		entityManager.clear(); 
+		entityManager.clear();
 
 		fiction = genreRepo.findOne(genreId);
 		assertThat(fiction.getBooks(), containsInAnyOrder(warAndPeace, inferno));
 	}
 
-	
 	@Test
 	public void shouldGenerateAuthorId() {
-		Author author = authorRepo.save(new Author("Tolstoy"));
+		Author author = authorRepo.save(new Author("Tolstoy", "description", "imageUrl"));
 		long authorId = author.getId();
 
-		entityManager.flush(); 
-		
+		entityManager.flush();
+
 		assertThat(authorId, is(greaterThan(0L)));
 	}
-	
+
 	@Test
 	public void shouldEstablishBookToAuthorRelationships() {
-		Author tolstoy = authorRepo.save(new Author("tolstoy"));
-		Author dante = authorRepo.save(new Author("dante"));
-		
+		Author tolstoy = authorRepo.save(new Author("tolstoy", "description", "imageUrl"));
+		Author dante = authorRepo.save(new Author("dante", "description", "imageUrl"));
+
 		Book book = new Book("One crazy book", tolstoy, dante);
 		book = bookRepo.save(book);
 		long bookId = book.getId();
-		
+
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		book = bookRepo.findOne(bookId);
 		assertThat(book.getAuthors(), containsInAnyOrder(tolstoy, dante));
-		
+
 	}
-	
+
 	@Test
 	public void shouldEstablishAuthorToBooksRelationship() {
-		Author author = authorRepo.save(new Author("Tolstoy"));
+		Author author = authorRepo.save(new Author("Tolstoy", "description", "imageUrl"));
 		long authorId = author.getId();
 
 		Book warAndPeace = new Book("War and Peace", author);
 		warAndPeace = bookRepo.save(warAndPeace);
-		
+
 		Book annaKarinina = new Book("Anna Karinina", author);
 		annaKarinina = bookRepo.save(annaKarinina);
-		
+
 		entityManager.flush();
 		entityManager.clear();
-	
+
 		author = authorRepo.findOne(authorId);
 		assertThat(author.getBooks(), containsInAnyOrder(warAndPeace, annaKarinina));
 	}

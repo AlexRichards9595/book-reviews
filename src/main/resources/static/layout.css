@@ -2,42 +2,53 @@
 	display: grid;
 	grid-template-rows: 50px auto 50px;
 }
+
 header {
+	
 }
+
 footer nav ul, header nav ul {
 	display: flex;
 	justify-content: space-around;
 	margin: 1rem;
 }
+
 .container {
 	display: grid;
 	grid-template-rows: 50px auto 50px;
 }
-main{
+
+main {
 	display: grid;
 	grid-template-rows: minmax(100vh, auto);
 }
+
 #main-container {
 	display: flex;
 	flex-direction: column;
 }
+
 #book-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 }
+
 #book-page {
 	display: flex;
 	justify-content: space-around;
 }
+
 #page-title, #book-page-title {
 	align-self: center;
 	margin-top: 3rem;
 	margin-bottom: 2rem;
 }
+
 #book-info p {
 	margin-bottom: 2rem;
 }
+
 .cards {
 	display: flex;
 	flex-direction: row;
@@ -47,12 +58,15 @@ main{
 	align-items: center;
 	justify-content: center;
 }
+
 .card-body {
-    padding: 19px;
+	padding: 19px;
 }
-    .card p {
-        padding: 5px;
-    }
+
+.card p {
+	padding: 5px;
+}
+
 .card {
 	display: flex;
 	flex-direction: column;
