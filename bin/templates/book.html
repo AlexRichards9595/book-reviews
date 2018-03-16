@@ -40,7 +40,7 @@
   							<input type="text" name="addTag" />
  						</div>
  						<div>
- 							<button th:formaction="@{/add-tag}">Add</button>
+ 							<button type="submit" th:value="${books.id}" name="id" th:formaction="@{/add-tag}">Add</button>
 		 				</div>
 		 			</form>
 				</article>
