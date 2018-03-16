@@ -6,7 +6,7 @@
 <meta charset="UTF-8"></meta>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
-<title>Authors</title>
+<title>Genres</title>
 
 <link rel="stylesheet" href="./layout.css"></link>
 <link rel="stylesheet" href="./style.css"></link>
@@ -19,7 +19,7 @@
 				<ul>
 					<li><a href="http://localhost:8080/books">Books</a></li>
 					<li><a href="http://localhost:8080/authors">Authors</a></li>
-					<li><a href="http://localhost:8080/genres">Genres</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -32,10 +32,9 @@
 						th:src="${author.imageUrl}" />
 					<div class="card-body">
 						<h3 th:text="${author.name}" />
-						<p class="card-text" th:text="${author.description}" />
 						<div class="card-bottom">
-							<a th:href="@{/author(id=${author.id})}"><button
-									type="button" class="btn">View</button></a>
+							<a th:href="@{/author(id=${author.id})}"><button type="button"
+									class="btn">View</button></a>
 						</div>
 					</div>
 				</article>
@@ -48,7 +47,7 @@
 				<ul>
 					<li><a href="http://localhost:8080/books">Books</a></li>
 					<li><a href="http://localhost:8080/authors">Authors</a></li>
-					<li><a href="http://localhost:8080/genres">Genres</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
 				</ul>
 			</nav>
 		</footer>

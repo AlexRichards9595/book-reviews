@@ -19,7 +19,7 @@
 				<ul>
 					<li><a href="http://localhost:8080/books">Books</a></li>
 					<li><a href="http://localhost:8080/authors">Authors</a></li>
-					<li><a href="http://localhost:8080/genres">Genres</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -27,7 +27,6 @@
 		<section id="main-container">
 			<h2 id="page-title" th:text="${authors.name}" />
 			<section class="cards" th:each="author: ${authors}">
-				<!-- <div th:each="author: ${authors}"> -->
 				<article class="card" th:each="book:${author.books}">
 					<img class="card-img-top" alt="Thumbnail [100%x225]"
 						th:src="${book.imageUrl}" />
@@ -40,8 +39,6 @@
 						</div>
 					</div>
 				</article>
-				<!--                		</div>
- -->
 			</section>
 		</section>
 
@@ -51,14 +48,10 @@
 				<ul>
 					<li><a href="http://localhost:8080/books">Books</a></li>
 					<li><a href="http://localhost:8080/authors">Authors</a></li>
-					<li><a href="http://localhost:8080/genres">Genres</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
 				</ul>
 			</nav>
 		</footer>
 	</div>
 </body>
 </html>
-
-
-
-
