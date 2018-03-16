@@ -28,11 +28,8 @@
 			<h2 id="page-title">Tags</h2>
 			<section class="cards">
 				<article class="card" th:each="tag: ${tags}">
-					<img class="card-img-top" alt="Thumbnail [100%x225]"
-						th:src="${tag.imageUrl}" />
 					<div class="card-body">
 						<h3 th:text="${tag.name}" />
-						<p class="card-text" th:text="${tag.description}" />
 						<div class="card-bottom">
 							<a th:href="@{/tag(id=${tag.id})}"><button
 									type="button" class="btn">View</button></a>

@@ -58,20 +58,6 @@ public class Book {
 	private Book() {
 	}
 
-	public Book(String title) {
-		this.title = title;
-	}
-
-	public Book(String title, Author author) {
-		this.title = title;
-		this.author = author;
-	}
-
-	public Book(String title, Tag...tags) {
-		this.title = title;
-		this.tags = new HashSet<>(asList(tags));
-	}
-
 	public Book(String title, Author author, String imageUrl, String description, Tag... tags) {
 		this.title = title;
 		this.tags = new HashSet<>(asList(tags));
@@ -91,5 +77,11 @@ public class Book {
 		}
 
 		return id == ((Book) obj).id;
+	}
+
+	public void addTag(Tag tag) {
+		System.out.println(tags);
+		System.out.println(tag);
+		tags.add(tag);
 	}
 }

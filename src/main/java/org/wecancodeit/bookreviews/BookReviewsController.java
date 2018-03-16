@@ -62,4 +62,21 @@ public class BookReviewsController {
 	public void showAllBooks(Model model) {
 
 	}
+//	@RequestMapping("/add-tag")
+//	public String addTagToThisBook(@RequestParam(value = "id") Long id, String addTag){
+//		Book thisBook = bookRepo.findOne(id);
+//		Tag tag = new Tag("addTag");
+//		thisBook.addTag(tag);
+//		
+//	}	
+		
+		
+		
+		
+		
 }
+	
+	
+	
+	
+	
