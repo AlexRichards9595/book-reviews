@@ -29,9 +29,9 @@
 			<section id="book-page">
 				<article id="book-info">
 					<h3>Author:</h3>
-					<p th:each="author:${books.authors}" th:text="${author.name}" />
-					<h3>Genre:</h3>
-					<p th:text="${books.genre.name}" />
+					<p th:text="${books.author.name}" />
+					<h3>Tags:</h3>
+					<p th:each="tag:${books.tags}" th:text="${tag.name}" />
 					<h3>Description:</h3>
 					<p th:text="${books.description}" />
 				</article>
