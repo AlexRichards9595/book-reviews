@@ -55,6 +55,7 @@ public class Book {
 	private Collection<Tag> tags;
 
 	// constructors
+	@SuppressWarnings("unused")
 	private Book() {
 	}
 

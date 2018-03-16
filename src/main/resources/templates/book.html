@@ -33,16 +33,22 @@
 					<h3>Description:</h3>
 					<p th:text="${books.description}" />
 					<h3>Tags:</h3>
-					<p th:each="tag:${books.tags}" th:text="${tag.name}" />
+					<div th:each="tag:${books.tags}">
+						<p th:text="${tag.name}" />
+						<form>
+							<button  type="submit" th:value="${tag.id}" name="id"
+								th:formaction="@{/add-tag}">Delete</button>
+						</form>
+					</div>
 					<form>
 						<div>
- 			 				<label>Tag:</label>
-  							<input type="text" name="addTag" />
- 						</div>
- 						<div>
- 							<button type="submit" th:value="${books.id}" name="id" th:formaction="@{/add-tag}">Add</button>
-		 				</div>
-		 			</form>
+							<label>Tag:</label> <input type="text" name="addTag" />
+						</div>
+						<div>
+							<button class="addButton" type="submit" th:value="${books.id}" name="id"
+								th:formaction="@{/add-tag}">Add</button>
+						</div>
+					</form>
 				</article>
 				<img id="book-page-image" alt="Book Image"
 					th:src="${books.imageUrl}" />

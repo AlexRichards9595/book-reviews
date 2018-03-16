@@ -45,8 +45,8 @@ main {
 	margin-bottom: 2rem;
 }
 
-#book-info p {
-	margin-bottom: 2rem;
+#book-info h3 {
+	margin-top: 2rem;
 }
 
 .cards {
