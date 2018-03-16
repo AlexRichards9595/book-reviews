@@ -6,46 +6,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Author {
+public class Tag {
 
 	@Id
 	@GeneratedValue
 	private long id;
 	private String name;
-	private String description;
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	private String imageUrl;
 
 	public long getId() {
 		return id;
 	}
 
-	private Author() {
-	}
-
-	public Author(String name, String description, String imageUrl) {
-		this.name = name;
-		this.description = description;
-		this.imageUrl = imageUrl;
-
-	}
-
-	public Object getName() {
+	public String getName() {
 		return name;
 	}
 
-	@OneToMany(mappedBy = "author")
+	private Tag() {
+	}
+
+	public Tag(String name) {
+		this.name = name;
+
+	}
+
+	@ManyToMany(mappedBy = "tags")
 	private Collection<Book> books;
 
 	public Collection<Book> getBooks() {
@@ -62,7 +48,7 @@ public class Author {
 			return false;
 		}
 
-		return id == ((Author) obj).id;
+		return id == ((Tag) obj).id;
 	}
 
 }

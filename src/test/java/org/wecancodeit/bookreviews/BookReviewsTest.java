@@ -16,8 +16,7 @@ import org.wecancodeit.bookreviews.Author;
 import org.wecancodeit.bookreviews.AuthorRepository;
 import org.wecancodeit.bookreviews.Book;
 import org.wecancodeit.bookreviews.BookRepository;
-import org.wecancodeit.bookreviews.Genre;
-import org.wecancodeit.bookreviews.GenreRepository;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -29,7 +28,7 @@ public class BookReviewsTest {
 	private BookRepository bookRepo;
 
 	@Resource
-	private GenreRepository genreRepo;
+	private TagRepository tagRepo;
 
 	@Resource
 	private AuthorRepository authorRepo;
@@ -62,23 +61,23 @@ public class BookReviewsTest {
 	}
 
 	@Test
-	public void shouldSaveBookToGenreRelationship() {
+	public void shouldSaveBookToAuthorRelationship() {
 
-		Genre fiction = new Genre("fiction", "imageUrl");
-		genreRepo.save(fiction);
-		long genreId = fiction.getId();
+		Author tolstoy = new Author("tolstoy", "Russian", "imageUrl");
+		authorRepo.save(tolstoy);
+		long genreId = tolstoy.getId();
 
-		Book warAndPeace = new Book("War and Peace", fiction);
+		Book warAndPeace = new Book("War and Peace", tolstoy);
 		bookRepo.save(warAndPeace);
 
-		Book inferno = new Book("Inferno", fiction);
+		Book inferno = new Book("Inferno", tolstoy);
 		bookRepo.save(inferno);
 
 		entityManager.flush();
 		entityManager.clear();
 
-		fiction = genreRepo.findOne(genreId);
-		assertThat(fiction.getBooks(), containsInAnyOrder(warAndPeace, inferno));
+		tolstoy = authorRepo.findOne(genreId);
+		assertThat(tolstoy.getBooks(), containsInAnyOrder(warAndPeace, inferno));
 	}
 
 	@Test
@@ -92,37 +91,37 @@ public class BookReviewsTest {
 	}
 
 	@Test
-	public void shouldEstablishBookToAuthorRelationships() {
-		Author tolstoy = authorRepo.save(new Author("tolstoy", "description", "imageUrl"));
-		Author dante = authorRepo.save(new Author("dante", "description", "imageUrl"));
+	public void shouldEstablishBookToTagRelationships() {
+		Tag historical = tagRepo.save(new Tag("historical"));
+		Tag fiction = tagRepo.save(new Tag("fiction"));
 
-		Book book = new Book("One crazy book", tolstoy, dante);
-		book = bookRepo.save(book);
-		long bookId = book.getId();
+		Book warAndPeace = new Book("War and Peace", historical, fiction);
+		warAndPeace = bookRepo.save(warAndPeace);
+		long bookId = warAndPeace.getId();
 
 		entityManager.flush();
 		entityManager.clear();
 
-		book = bookRepo.findOne(bookId);
-		assertThat(book.getAuthors(), containsInAnyOrder(tolstoy, dante));
+		warAndPeace = bookRepo.findOne(bookId);
+		assertThat(warAndPeace.getTags(), containsInAnyOrder(historical, fiction));
 
 	}
 
 	@Test
-	public void shouldEstablishAuthorToBooksRelationship() {
-		Author author = authorRepo.save(new Author("Tolstoy", "description", "imageUrl"));
-		long authorId = author.getId();
+	public void shouldEstablishTagToBooksRelationship() {
+		Tag fiction = tagRepo.save(new Tag("fiction"));
+		long tagId = fiction.getId();
 
-		Book warAndPeace = new Book("War and Peace", author);
+		Book warAndPeace = new Book("War and Peace", fiction);
 		warAndPeace = bookRepo.save(warAndPeace);
 
-		Book annaKarinina = new Book("Anna Karinina", author);
+		Book annaKarinina = new Book("Anna Karinina", fiction);
 		annaKarinina = bookRepo.save(annaKarinina);
 
 		entityManager.flush();
 		entityManager.clear();
 
-		author = authorRepo.findOne(authorId);
-		assertThat(author.getBooks(), containsInAnyOrder(warAndPeace, annaKarinina));
+		fiction = tagRepo.findOne(tagId);
+		assertThat(fiction.getBooks(), containsInAnyOrder(warAndPeace, annaKarinina));
 	}
 }

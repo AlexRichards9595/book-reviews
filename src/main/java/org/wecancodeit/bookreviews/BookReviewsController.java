@@ -12,9 +12,9 @@ public class BookReviewsController {
 
 	@Resource
 	BookRepository bookRepo;
-
+	
 	@Resource
-	GenreRepository genreRepo;
+	TagRepository tagRepo;
 
 	@Resource
 	AuthorRepository authorRepo;
@@ -31,28 +31,28 @@ public class BookReviewsController {
 		return "book";
 	}
 
-	@RequestMapping(value = "/genres")
-	public String getAllGenres(Model model) {
-		model.addAttribute("genres", genreRepo.findAll());
-		return "genres";
-	}
-
-	@RequestMapping("/genre")
-	public String getAGenre(@RequestParam Long id, Model model) {
-		model.addAttribute("genres", genreRepo.findOne(id));
-		return "genre";
-	}
-
 	@RequestMapping(value = "/authors")
-	public String getAllAuthors(Model model) {
+	public String getAllGenres(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		return "authors";
 	}
 
 	@RequestMapping("/author")
-	public String getAnAuthor(@RequestParam Long id, Model model) {
+	public String getAGenre(@RequestParam Long id, Model model) {
 		model.addAttribute("authors", authorRepo.findOne(id));
 		return "author";
+	}
+
+	@RequestMapping(value = "/tags")
+	public String getAllAuthors(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return "tags";
+	}
+
+	@RequestMapping("/tag")
+	public String getAnAuthor(@RequestParam Long id, Model model) {
+		model.addAttribute("tags", tagRepo.findOne(id));
+		return "tag";
 	}
 
 	public String showBook(long bookId, Model model) {

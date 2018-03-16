@@ -23,7 +23,7 @@ public class Book {
 	private String imageUrl;
 
 	@ManyToOne
-	private Genre genre;
+	private Author author;
 
 	// getters
 	public long getId() {
@@ -42,17 +42,17 @@ public class Book {
 		return imageUrl;
 	}
 
-	public Genre getGenre() {
-		return genre;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public Collection<Author> getAuthors() {
-		return authors;
+	public Collection<Tag> getTags() {
+		return tags;
 	}
 
 	// collections
 	@ManyToMany
-	private Collection<Author> authors;
+	private Collection<Tag> tags;
 
 	// constructors
 	private Book() {
@@ -62,20 +62,20 @@ public class Book {
 		this.title = title;
 	}
 
-	public Book(String title, Genre genre) {
+	public Book(String title, Author author) {
 		this.title = title;
-		this.genre = genre;
+		this.author = author;
 	}
 
-	public Book(String title, Author... authors) {
+	public Book(String title, Tag...tags) {
 		this.title = title;
-		this.authors = new HashSet<>(asList(authors));
+		this.tags = new HashSet<>(asList(tags));
 	}
 
-	public Book(String title, Genre genre, String imageUrl, String description, Author... authors) {
+	public Book(String title, Author author, String imageUrl, String description, Tag... tags) {
 		this.title = title;
-		this.authors = new HashSet<>(asList(authors));
-		this.genre = genre;
+		this.tags = new HashSet<>(asList(tags));
+		this.author = author;
 		this.description = description;
 		this.imageUrl = imageUrl;
 	}
