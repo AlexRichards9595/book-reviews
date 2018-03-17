@@ -33,26 +33,38 @@
 					<h3>Description:</h3>
 					<p th:text="${books.description}" />
 					<h3>Tags:</h3>
-					<div th:each="tag:${books.tags}">
+					<div class="tags" th:each="tag:${books.tags}">
 						<p th:text="${tag.name}" />
-						<form>
-							<button  type="submit" th:value="${tag.id}" name="id"
-								th:formaction="@{/add-tag}">Delete</button>
-						</form>
+						<input type="hidden" name="tagId" th:value="${tag.id}" />
+						<button  class="deleteButton"  th:attr="data-del-id=${books.id},data-tag-id=${tag.id}">Delete</button>
 					</div>
 					<form>
 						<div>
-							<label>Tag:</label> <input type="text" name="addTag" />
+							<label>Tag:</label> <input id="tagInput" type="text" />
 						</div>
 						<div>
-							<button class="addButton" type="submit" th:value="${books.id}" name="id"
-								th:formaction="@{/add-tag}">Add</button>
+							<input type="hidden" name="bookId" th:value="${books.id}" />
+						</div>
+						<div>
+							<button class="addButton" th:attr="data-book-id=${books.id}">Add</button>
 						</div>
 					</form>
 				</article>
 				<img id="book-page-image" alt="Book Image"
 					th:src="${books.imageUrl}" />
 			</section>
+			<form method="POST">
+ 				<div>
+ 			 		<label>Comment:</label>
+  					<input type="text" name="commentInput" />
+ 				</div>
+ 				<div>
+ 					<button th:value="${books.id}" name="id"  th:formaction="@{/add-comment}">Submit</button>
+		 		</div>
+			</form>
+			<div th:each="comment:${books.comments}">
+				<p th:text="${comment.name}" />
+			</div>
 		</section>
 		</main>
 		<footer>
@@ -65,5 +77,6 @@
 			</nav>
 		</footer>
 	</div>
+	<script src="./js/tags.js"></script>
 </body>
 </html>

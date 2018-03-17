@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Book {
 
@@ -46,22 +48,32 @@ public class Book {
 		return author;
 	}
 
-	public Collection<Tag> getTags() {
-		return tags;
-	}
-
-	// collections
-	@ManyToMany
+	@JsonIgnore
+	@ManyToMany(mappedBy = "books")
 	private Collection<Tag> tags;
 
+	public Collection<Tag> getTags() {
+		return tags;
+	
+	}
+	@JsonIgnore
+	@ManyToMany(mappedBy = "books")
+	private Collection<Comment> comments;
+
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+
+	
+	
+	
 	// constructors
 	@SuppressWarnings("unused")
 	private Book() {
 	}
 
-	public Book(String title, Author author, String imageUrl, String description, Tag... tags) {
+	public Book(String title, Author author, String imageUrl, String description) {
 		this.title = title;
-		this.tags = new HashSet<>(asList(tags));
 		this.author = author;
 		this.description = description;
 		this.imageUrl = imageUrl;
@@ -80,9 +92,5 @@ public class Book {
 		return id == ((Book) obj).id;
 	}
 
-	public void addTag(Tag tag) {
-		System.out.println(tags);
-		System.out.println(tag);
-		tags.add(tag);
-	}
+
 }

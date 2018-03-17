@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/books")
 public class BooksReviewRestController {
 	
 	@Resource
@@ -18,28 +17,32 @@ public class BooksReviewRestController {
 
 	
 	@RequestMapping("/add-tag")
-	public Book addTagToThisBook(@RequestParam(value = "id") Long id, @RequestParam String addTag){
-		Book thisBook = bookRepo.findOne(id);
+	public Book addTagToThisBook(Long bookId,  String addTag){
+		Book thisBook = bookRepo.findOne(bookId);
+		if (tagRepo.findByName(addTag)!=null) {
+			Tag tag = tagRepo.findByName(addTag);
+			tag.addBook(thisBook);
+			return thisBook;
+			
+		}
+		
 		Tag tag = new Tag(addTag);
 		tagRepo.save(tag);
-		thisBook.addTag(tag);
-		bookRepo.save(thisBook);
+		tag.addBook(thisBook);
+		tagRepo.save(tag);
+		
+		return thisBook; 
+	}	
+	
+	@RequestMapping("/del-tag")
+	public Book DeleteTagFromThisBook(Long bookId, Long tagId){
+		Book thisBook = bookRepo.findOne(bookId);
+		Tag thisTag = tagRepo.findOne(tagId);
+		thisTag.delBook(thisBook);
+		tagRepo.save(thisTag);
 		
 		
 		return thisBook;
 	}	
-	
-//	@RequestMapping("/delete-tag")
-//	public String DeleteTagFromThisBook(@RequestParam(value = "id") Long id, @RequestParam String delTag){
-//		Book thisBook = bookRepo.findOne(id);
-//		Tag tag = new Tag(delTag);
-//		tagRepo.save(tag);
-//		thisBook.addTag(tag);
-//		bookRepo.save(thisBook);
-//		
-//		id = thisBook.getId();
-//		
-//		return "redirect:/book?id=" + id;
-//	}	
 		
 }

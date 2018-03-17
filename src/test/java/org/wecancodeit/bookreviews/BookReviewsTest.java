@@ -3,7 +3,9 @@ package org.wecancodeit.bookreviews;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
@@ -93,12 +95,12 @@ public class BookReviewsTest {
 
 	@Test
 	public void shouldEstablishBookToTagRelationships() {
-		Tag historical = tagRepo.save(new Tag("historical"));
-		Tag fiction = tagRepo.save(new Tag("fiction"));
-
-		Book warAndPeace = new Book("War and Peace", null, null, null, historical, fiction);
+		Book warAndPeace = new Book("War and Peace", null, null, null);
 		warAndPeace = bookRepo.save(warAndPeace);
 		long bookId = warAndPeace.getId();
+		
+		Tag historical = tagRepo.save(new Tag("historical", warAndPeace));
+		Tag fiction = tagRepo.save(new Tag("fiction", warAndPeace));
 
 		entityManager.flush();
 		entityManager.clear();
@@ -110,14 +112,15 @@ public class BookReviewsTest {
 
 	@Test
 	public void shouldEstablishTagToBooksRelationship() {
-		Tag fiction = tagRepo.save(new Tag("fiction"));
-		long tagId = fiction.getId();
 
-		Book warAndPeace = new Book("War and Peace", null, null, null, fiction);
+		Book warAndPeace = new Book("War and Peace", null, null, null);
 		warAndPeace = bookRepo.save(warAndPeace);
 
-		Book annaKarinina = new Book("Anna Karinina", null, null, null, fiction);
+		Book annaKarinina = new Book("Anna Karinina", null, null, null);
 		annaKarinina = bookRepo.save(annaKarinina);
+		
+		Tag fiction = tagRepo.save(new Tag("fiction", warAndPeace, annaKarinina));
+		long tagId = fiction.getId();
 
 		entityManager.flush();
 		entityManager.clear();
@@ -127,12 +130,21 @@ public class BookReviewsTest {
 	}
 	
 	@Test
-	public void shouldAddTagToBook() {
+	public void shouldAddBookToTag() {
 		Tag fiction = tagRepo.save(new Tag("fiction"));
 		Book warAndPeace = new Book("War and Peace", null, null, null);
 		
-		warAndPeace.addTag(fiction);
+		fiction.addBook(warAndPeace);
 		
-		assertThat(warAndPeace.getTags(), contains(fiction));
+		assertThat(fiction.getBooks(), contains(warAndPeace));
+	}
+	@Test
+	public void shouldRemoveBookFromTag() {
+		Book warAndPeace = new Book("War and Peace", null, null, null);
+		Tag fiction = tagRepo.save(new Tag("fiction", warAndPeace));
+		
+		fiction.delBook(warAndPeace);
+		
+		assertThat(fiction.getBooks(), not(hasItem(warAndPeace)));
 	}
 }

@@ -10,10 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class Tag {
+public class Comment {
 
 	@Id
 	@GeneratedValue
@@ -28,10 +26,10 @@ public class Tag {
 		return name;
 	}
 
-	private Tag() {
+	private Comment() {
 	}
 
-	public Tag(String name,  Book...books) {
+	public Comment(String name,  Book...books) {
 		this.name = name;
 		this.books = new HashSet<>(asList(books));
 	}
@@ -41,7 +39,7 @@ public class Tag {
 		return books;
 	}
 
-	// collections
+
 	@ManyToMany
 	private Collection<Book> books;
 
@@ -55,16 +53,7 @@ public class Tag {
 			return false;
 		}
 
-		return id == ((Tag) obj).id;
-	}
-	
-	public void addBook(Book book) {
-		books.add(book);
-	}
-
-	public void delBook(Book book) {
-		books.remove(book);
-		
+		return id == ((Comment) obj).id;
 	}
 
 }
