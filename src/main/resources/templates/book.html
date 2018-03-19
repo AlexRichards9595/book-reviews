@@ -35,9 +35,9 @@
 					<h3>Tags:</h3>
 					<div class="tags" th:each="tag:${books.tags}">
 						<p th:text="${tag.name}" />
-						<input type="hidden" name="tagId" th:value="${tag.id}" />
 						<button class="deleteButton"
 							th:attr="data-del-id=${books.id},data-tag-id=${tag.id}">Delete</button>
+						<input type="hidden" name="tagId" th:value="${tag.id}" />
 					</div>
 					<form>
 						<div>

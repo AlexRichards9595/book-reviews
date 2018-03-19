@@ -19,24 +19,30 @@ addBtn.addEventListener('click', function(event) {
 	xhr.open('POST', 'http://localhost:8080/add-tag?bookId=' + bookId + '&addTag='+ tag, true);
 	xhr.send();
 	
-	const deleteButton = document.querySelector(".deleteButton");
 	const tagList = document.querySelector(".tags");
+	const deleteButton = document.querySelector(".deleteButton");
 	appendElement(tagList, createElement('p', tag));
 	appendElement(tagList, createElement('button', deleteButton));
 });
 
+const tagDeleteButtonList = document.querySelectorAll('.deleteButton')
+tagDeleteButtonList.forEach(function(xButton) {
+	addTagDeleteListener(xButton)
+});
 
-const delBtn = document.querySelectorAll('.deleteButton');
-delBtn.forEach(button => { 
-	button.addEventListener('click', () => {
-		const bookId = button.dataset.delId;
-		const tagId = button.dataset.tagId;
+
+function addTagDeleteListener (element){
+	element.addEventListener('click', () => {
+		const bookId = element.dataset.delId;
+		const tagId = element.dataset.tagId;
 		console.log(bookId);
 		console.log(tagId);
 		xhr.open('DELETE', 'http://localhost:8080/del-tag?bookId=' + bookId + '&tagId=' + tagId, true);
 		xhr.send(); 
+		
+		element.parentNode.remove();
 	});
-});
+};
 
 function createElement (elem, textValue) {
 	const newElem = document.createElement(elem);
