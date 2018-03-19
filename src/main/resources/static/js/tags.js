@@ -27,13 +27,15 @@ addBtn.addEventListener('click', function(event) {
 
 
 const delBtn = document.querySelectorAll('.deleteButton');
-delBtn.addEventListener('click', () => {
-	const bookId = delBtn.dataset.delId;
-	const tagId = delBtn.dataset.tagId;
-	console.log(bookId);
-	console.log(tagId);
-	xhr.open('DELETE', 'http://localhost:8080/del-tag?bookId=' + bookId + '&tagId=' + tagId, true);
-	xhr.send();
+delBtn.forEach(button => { 
+	button.addEventListener('click', () => {
+		const bookId = button.dataset.delId;
+		const tagId = button.dataset.tagId;
+		console.log(bookId);
+		console.log(tagId);
+		xhr.open('DELETE', 'http://localhost:8080/del-tag?bookId=' + bookId + '&tagId=' + tagId, true);
+		xhr.send(); 
+	});
 });
 
 function createElement (elem, textValue) {

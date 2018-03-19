@@ -54,8 +54,9 @@ public class Book {
 
 	public Collection<Tag> getTags() {
 		return tags;
-	
+
 	}
+
 	@JsonIgnore
 	@ManyToMany(mappedBy = "books")
 	private Collection<Comment> comments;
@@ -64,9 +65,6 @@ public class Book {
 		return comments;
 	}
 
-	
-	
-	
 	// constructors
 	@SuppressWarnings("unused")
 	private Book() {
@@ -91,6 +89,5 @@ public class Book {
 
 		return id == ((Book) obj).id;
 	}
-
 
 }

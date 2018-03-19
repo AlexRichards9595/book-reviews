@@ -31,12 +31,11 @@ public class Tag {
 	private Tag() {
 	}
 
-	public Tag(String name,  Book...books) {
+	public Tag(String name, Book... books) {
 		this.name = name;
 		this.books = new HashSet<>(asList(books));
 	}
-	
-	
+
 	public Collection<Book> getBooks() {
 		return books;
 	}
@@ -57,14 +56,14 @@ public class Tag {
 
 		return id == ((Tag) obj).id;
 	}
-	
+
 	public void addBook(Book book) {
 		books.add(book);
 	}
 
 	public void delBook(Book book) {
 		books.remove(book);
-		
+
 	}
 
 }

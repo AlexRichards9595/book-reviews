@@ -13,13 +13,12 @@ public class BookPopulator implements CommandLineRunner {
 
 	@Resource
 	private AuthorRepository authorRepo;
-	
+
 	@Resource
 	private TagRepository tagRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
-		
 
 		Author tolstoy = new Author("Leo Tolstoy", "He is Russion AF", "./images/leo-tolstoy.jpg");
 		tolstoy = authorRepo.save(tolstoy);
@@ -31,20 +30,19 @@ public class BookPopulator implements CommandLineRunner {
 				"./images/fyodor-dostoyevsky.jpg");
 		dostoyevsky = authorRepo.save(dostoyevsky);
 
-		Book warAndPeace = bookRepo.save(new Book("War and Peace", tolstoy, "./images/war-and-peace.jpg",
-				"It's a really long but good book"));
+		Book warAndPeace = bookRepo.save(
+				new Book("War and Peace", tolstoy, "./images/war-and-peace.jpg", "It's a really long but good book"));
 		Book fellowship = bookRepo
 				.save(new Book("Fellowship of the Ring", tolkein, "./images/fellowship.gif", "It's alright"));
 		Book twoTowers = bookRepo
 				.save(new Book("The Two Towers", tolkein, "./images/two-towers.gif", "It's a little better"));
-		Book returnOfTheKing = bookRepo.save(new Book("The Return of the King", tolkein,
-				"./images/return-of-the-king.gif", "It's the best"));
-		Book surprisedByJoy = bookRepo.save(
-				new Book("Surprised By Joy", lewis, "./images/surprised-by-joy.jpg", "It is a little dry"));
+		Book returnOfTheKing = bookRepo
+				.save(new Book("The Return of the King", tolkein, "./images/return-of-the-king.gif", "It's the best"));
+		Book surprisedByJoy = bookRepo
+				.save(new Book("Surprised By Joy", lewis, "./images/surprised-by-joy.jpg", "It is a little dry"));
 		Book crimeAndPunishment = bookRepo.save(new Book("Crime and Punishment", dostoyevsky,
 				"./images/crime-and-punishment.png", "It's my favorite book"));
 
-		
 		Tag fiction = new Tag("Fiction", warAndPeace, fellowship, twoTowers, returnOfTheKing, crimeAndPunishment);
 		Tag nonFiction = new Tag("Non-Fiction", surprisedByJoy);
 		Tag historical = new Tag("Historical", warAndPeace);

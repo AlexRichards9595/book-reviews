@@ -29,16 +29,14 @@ public class Comment {
 	private Comment() {
 	}
 
-	public Comment(String name,  Book...books) {
+	public Comment(String name, Book... books) {
 		this.name = name;
 		this.books = new HashSet<>(asList(books));
 	}
-	
-	
+
 	public Collection<Book> getBooks() {
 		return books;
 	}
-
 
 	@ManyToMany
 	private Collection<Book> books;

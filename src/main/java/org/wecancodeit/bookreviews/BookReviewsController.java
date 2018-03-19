@@ -12,13 +12,13 @@ public class BookReviewsController {
 
 	@Resource
 	BookRepository bookRepo;
-	
+
 	@Resource
 	TagRepository tagRepo;
 
 	@Resource
 	AuthorRepository authorRepo;
-	
+
 	@Resource
 	CommentRepository commentRepo;
 
@@ -65,22 +65,14 @@ public class BookReviewsController {
 	public void showAllBooks(Model model) {
 
 	}
+
 	@RequestMapping("/add-comment")
-	public String addCommentToThisBook(@RequestParam(value = "id") Long id,  String commentInput){
+	public String addCommentToThisBook(@RequestParam(value = "id") Long id, String commentInput) {
 		Book thisBook = bookRepo.findOne(id);
 		Comment comment = new Comment(commentInput, thisBook);
 		commentRepo.save(comment);
-		
-		return "redirect:/book?id="+id; 
-	}	
-	
-		
-		
-		
-		
+
+		return "redirect:/book?id=" + id;
+	}
+
 }
-	
-	
-	
-	
-	

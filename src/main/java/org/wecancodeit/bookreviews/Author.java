@@ -46,6 +46,7 @@ public class Author {
 	public Object getName() {
 		return name;
 	}
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "author")
 	private Collection<Book> books;
