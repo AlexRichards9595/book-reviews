@@ -16,13 +16,14 @@ addBtn.addEventListener('click', function(event) {
 	console.log(tag);
 	const bookId = addBtn.dataset.bookId;
 	console.log(bookId);
-	xhr.open('POST', 'http://localhost:8080/add-tag?bookId=' + bookId + '&addTag='+ tag, true);
-	xhr.send();
 	
 	const tagList = document.querySelector(".tags");
 	const deleteButton = document.querySelector(".deleteButton");
 	appendElement(tagList, createElement('p', tag));
-	appendElement(tagList, createElement('button', deleteButton));
+	appendElement(tagList, addTagDeleteListener(createElement('button', "Delete")));
+	
+	xhr.open('POST', 'http://localhost:8080/add-tag?bookId=' + bookId + '&addTag='+ tag, true);
+	xhr.send();
 });
 
 const tagDeleteButtonList = document.querySelectorAll('.deleteButton')
@@ -42,6 +43,7 @@ function addTagDeleteListener (element){
 		
 		element.parentNode.remove();
 	});
+	return element
 };
 
 function createElement (elem, textValue) {
