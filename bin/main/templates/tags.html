@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+<title>Tags</title>
+
+<link rel="stylesheet" href="./layout.css"></link>
+<link rel="stylesheet" href="./style.css"></link>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+		<section id="main-container">
+			<h2 id="page-title">Tags</h2>
+			<section class="cards">
+				<article class="card" th:each="tag: ${tags}">
+					<div class="card-body">
+						<h3 th:text="${tag.name}" />
+						<div class="card-bottom">
+							<a th:href="@{/tag(id=${tag.id})}"><button type="button"
+									class="btn">View</button></a>
+						</div>
+					</div>
+				</article>
+			</section>
+		</section>
+
+		</main>
+		<footer>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+</body>
+</html>

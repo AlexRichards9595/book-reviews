@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+<title th:text="${authors.name}" />
+
+<link rel="stylesheet" href="./layout.css"></link>
+<link rel="stylesheet" href="./style.css"></link>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+		<section id="main-container">
+			<h2 id="page-title" th:text="${authors.name}" />
+			<section class="cards" th:each="author: ${authors}">
+				<article class="card" th:each="book:${author.books}">
+					<img class="card-img-top" alt="Thumbnail [100%x225]"
+						th:src="${book.imageUrl}" />
+					<div class="card-body">
+						<h3 th:text="${book.title}" />
+						<p class="card-text" th:text="${book.description}" />
+						<div class="card-bottom">
+							<a th:href="@{/book(id=${book.id})}"><button type="button"
+									class="btn">View</button></a>
+						</div>
+					</div>
+				</article>
+			</section>
+		</section>
+
+		</main>
+		<footer>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+</body>
+</html>

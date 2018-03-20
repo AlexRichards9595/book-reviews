@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+<title th:text="${books.title}" />
+
+<link rel="stylesheet" href="./layout.css"></link>
+<link rel="stylesheet" href="./style.css"></link>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+		<section id="book-container">
+			<h2 id="book-page-title" th:text="${books.title}" />
+			<section id="book-page">
+				<article id="book-info">
+					<h3>Author:</h3>
+					<p th:text="${books.author.name}" />
+					<h3>Description:</h3>
+					<p th:text="${books.description}" />
+					<h3>Tags:</h3>
+					<div class="tags" th:each="tag:${books.tags}">
+						<p th:text="${tag.name}" />
+						<button class="deleteButton"
+							th:attr="data-del-id=${books.id},data-tag-id=${tag.id}">Delete</button>
+						<input type="hidden" name="tagId" th:value="${tag.id}" />
+					</div>
+					<form>
+						<div>
+							<label>Tag:</label> <input id="tagInput" type="text" />
+						</div>
+						<div>
+							<input type="hidden" name="bookId" th:value="${books.id}" />
+						</div>
+						<div>
+							<button class="addButton" th:attr="data-book-id=${books.id}">Add</button>
+						</div>
+					</form>
+				</article>
+				<img id="book-page-image" alt="Book Image"
+					th:src="${books.imageUrl}" />
+			</section>
+			<form method="POST">
+				<div>
+					<label>Comment:</label> <input type="text" name="commentInput" />
+				</div>
+				<div>
+					<button th:value="${books.id}" name="id"
+						th:formaction="@{/add-comment}">Submit</button>
+				</div>
+			</form>
+			<div class="comments" th:each="comment:${books.comments}">
+				<p>Comment:</p>
+				<p class="comment-content" th:text="${comment.name}" />
+			</div>
+		</section>
+		</main>
+		<footer>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8080/books">Books</a></li>
+					<li><a href="http://localhost:8080/authors">Authors</a></li>
+					<li><a href="http://localhost:8080/tags">Tags</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<script src="./js/tags.js"></script>
+</body>
+</html>
